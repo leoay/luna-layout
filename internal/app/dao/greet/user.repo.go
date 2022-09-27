@@ -6,9 +6,9 @@ import (
 	"github.com/google/wire"
 	"gorm.io/gorm"
 
-	"github.com/LyricTian/gin-admin/v8/internal/app/dao/util"
-	"github.com/LyricTian/gin-admin/v8/internal/app/schema"
-	"github.com/LyricTian/gin-admin/v8/pkg/errors"
+	"server/internal/app/dao/util"
+	"server/internal/app/schema"
+	"server/pkg/errors"
 )
 
 var UserSet = wire.NewSet(wire.Struct(new(UserRepo), "*"))
