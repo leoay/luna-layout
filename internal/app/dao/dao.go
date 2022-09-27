@@ -7,8 +7,8 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/LyricTian/gin-admin/v8/internal/app/config"
+	"github.com/LyricTian/gin-admin/v8/internal/app/dao/Greet"
 	"github.com/LyricTian/gin-admin/v8/internal/app/dao/menu"
-	"github.com/LyricTian/gin-admin/v8/internal/app/dao/role"
 	"github.com/LyricTian/gin-admin/v8/internal/app/dao/user"
 	"github.com/LyricTian/gin-admin/v8/internal/app/dao/util"
 ) // end
@@ -19,9 +19,9 @@ var RepoSet = wire.NewSet(
 	menu.MenuActionResourceSet,
 	menu.MenuActionSet,
 	menu.MenuSet,
-	role.RoleMenuSet,
-	role.RoleSet,
-	user.UserRoleSet,
+	Greet.GreetMenuSet,
+	Greet.GreetSet,
+	user.UserGreetSet,
 	user.UserSet,
 ) // end
 
@@ -31,9 +31,9 @@ type (
 	MenuActionResourceRepo = menu.MenuActionResourceRepo
 	MenuActionRepo         = menu.MenuActionRepo
 	MenuRepo               = menu.MenuRepo
-	RoleMenuRepo           = role.RoleMenuRepo
-	RoleRepo               = role.RoleRepo
-	UserRoleRepo           = user.UserRoleRepo
+	GreetMenuRepo          = Greet.GreetMenuRepo
+	GreetRepo              = Greet.GreetRepo
+	UserGreetRepo          = user.UserGreetRepo
 	UserRepo               = user.UserRepo
 ) // end
 
@@ -47,9 +47,9 @@ func AutoMigrate(db *gorm.DB) error {
 		new(menu.MenuActionResource),
 		new(menu.MenuAction),
 		new(menu.Menu),
-		new(role.RoleMenu),
-		new(role.Role),
-		new(user.UserRole),
+		new(Greet.GreetMenu),
+		new(Greet.Greet),
+		new(user.UserGreet),
 		new(user.User),
 	) // end
 }

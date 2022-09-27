@@ -10,21 +10,13 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/LyricTian/captcha"
-	"github.com/LyricTian/captcha/store"
-	"github.com/LyricTian/gin-admin/v8/internal/app/config"
-	"github.com/LyricTian/gin-admin/v8/pkg/logger"
-	"github.com/go-redis/redis"
 	"github.com/google/gops/agent"
-
-	_ "github.com/LyricTian/gin-admin/v8/internal/app/swagger"
+	"github.com/leoay/luna/pkg/logger"
+	"server/internal/app/config"
 )
 
 type options struct {
 	ConfigFile string
-	ModelFile  string
-	MenuFile   string
-	WWWDir     string
 	Version    string
 }
 
@@ -33,24 +25,6 @@ type Option func(*options)
 func SetConfigFile(s string) Option {
 	return func(o *options) {
 		o.ConfigFile = s
-	}
-}
-
-func SetModelFile(s string) Option {
-	return func(o *options) {
-		o.ModelFile = s
-	}
-}
-
-func SetWWWDir(s string) Option {
-	return func(o *options) {
-		o.WWWDir = s
-	}
-}
-
-func SetMenuFile(s string) Option {
-	return func(o *options) {
-		o.MenuFile = s
 	}
 }
 
@@ -66,16 +40,6 @@ func Init(ctx context.Context, opts ...Option) (func(), error) {
 		opt(&o)
 	}
 
-	config.MustLoad(o.ConfigFile)
-	if v := o.ModelFile; v != "" {
-		config.C.Casbin.Model = v
-	}
-	if v := o.WWWDir; v != "" {
-		config.C.WWW = v
-	}
-	if v := o.MenuFile; v != "" {
-		config.C.Menu.Data = v
-	}
 	config.PrintWithJSON()
 
 	logger.WithContext(ctx).Printf("Start server,#run_mode %s,#version %s,#pid %d", config.C.RunMode, o.Version, os.Getpid())
@@ -94,13 +58,6 @@ func Init(ctx context.Context, opts ...Option) (func(), error) {
 		return nil, err
 	}
 
-	if config.C.Menu.Enable && config.C.Menu.Data != "" {
-		err = injector.MenuSrv.InitData(ctx, config.C.Menu.Data)
-		if err != nil {
-			return nil, err
-		}
-	}
-
 	httpServerCleanFunc := InitHTTPServer(ctx, injector.Engine)
 
 	return func() {
@@ -109,18 +66,6 @@ func Init(ctx context.Context, opts ...Option) (func(), error) {
 		monitorCleanFunc()
 		loggerCleanFunc()
 	}, nil
-}
-
-func InitCaptcha() {
-	cfg := config.C.Captcha
-	if cfg.Store == "redis" {
-		rc := config.C.Redis
-		captcha.SetCustomStore(store.NewRedisStore(&redis.Options{
-			Addr:     rc.Addr,
-			Password: rc.Password,
-			DB:       cfg.RedisDB,
-		}, captcha.Expiration, logger.StandardLogger(), cfg.RedisPrefix))
-	}
 }
 
 func InitMonitor(ctx context.Context) func() {

@@ -35,10 +35,10 @@ func (a *UserRepo) Query(ctx context.Context, params schema.UserQueryParam, opts
 	if v := params.Status; v > 0 {
 		db = db.Where("status=?", v)
 	}
-	if v := params.RoleIDs; len(v) > 0 {
-		subQuery := GetUserRoleDB(ctx, a.DB).
+	if v := params.GreetIDs; len(v) > 0 {
+		subQuery := GetUserGreetDB(ctx, a.DB).
 			Select("user_id").
-			Where("role_id IN (?)", v)
+			Where("Greet_id IN (?)", v)
 		db = db.Where("id IN (?)", subQuery)
 	}
 	if v := params.QueryValue; v != "" {

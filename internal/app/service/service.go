@@ -5,8 +5,5 @@ import (
 )
 
 var ServiceSet = wire.NewSet(
-	MenuSet,
-	RoleSet,
-	UserSet,
-	LoginSet,
+	GreetSet,
 ) // end

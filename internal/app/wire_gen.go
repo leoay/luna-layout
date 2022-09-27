@@ -8,8 +8,8 @@ package app
 
 import (
 	"github.com/LyricTian/gin-admin/v8/internal/app/api"
+	"github.com/LyricTian/gin-admin/v8/internal/app/dao/Greet"
 	"github.com/LyricTian/gin-admin/v8/internal/app/dao/menu"
-	"github.com/LyricTian/gin-admin/v8/internal/app/dao/role"
 	"github.com/LyricTian/gin-admin/v8/internal/app/dao/user"
 	"github.com/LyricTian/gin-admin/v8/internal/app/dao/util"
 	"github.com/LyricTian/gin-admin/v8/internal/app/module/adapter"
@@ -33,10 +33,10 @@ func BuildInjector() (*Injector, func(), error) {
 		cleanup()
 		return nil, nil, err
 	}
-	roleRepo := &role.RoleRepo{
+	GreetRepo := &Greet.GreetRepo{
 		DB: db,
 	}
-	roleMenuRepo := &role.RoleMenuRepo{
+	GreetMenuRepo := &Greet.GreetMenuRepo{
 		DB: db,
 	}
 	menuActionResourceRepo := &menu.MenuActionResourceRepo{
@@ -45,15 +45,15 @@ func BuildInjector() (*Injector, func(), error) {
 	userRepo := &user.UserRepo{
 		DB: db,
 	}
-	userRoleRepo := &user.UserRoleRepo{
+	userGreetRepo := &user.UserGreetRepo{
 		DB: db,
 	}
 	casbinAdapter := &adapter.CasbinAdapter{
-		RoleRepo:         roleRepo,
-		RoleMenuRepo:     roleMenuRepo,
+		GreetRepo:        GreetRepo,
+		GreetMenuRepo:    GreetMenuRepo,
 		MenuResourceRepo: menuActionResourceRepo,
 		UserRepo:         userRepo,
-		UserRoleRepo:     userRoleRepo,
+		UserGreetRepo:    userGreetRepo,
 	}
 	syncedEnforcer, cleanup3, err := InitCasbin(casbinAdapter)
 	if err != nil {
@@ -70,9 +70,9 @@ func BuildInjector() (*Injector, func(), error) {
 	loginSrv := &service.LoginSrv{
 		Auth:           auther,
 		UserRepo:       userRepo,
-		UserRoleRepo:   userRoleRepo,
-		RoleRepo:       roleRepo,
-		RoleMenuRepo:   roleMenuRepo,
+		UserGreetRepo:  userGreetRepo,
+		GreetRepo:      GreetRepo,
+		GreetMenuRepo:  GreetMenuRepo,
 		MenuRepo:       menuRepo,
 		MenuActionRepo: menuActionRepo,
 	}
@@ -91,23 +91,23 @@ func BuildInjector() (*Injector, func(), error) {
 	menuAPI := &api.MenuAPI{
 		MenuSrv: menuSrv,
 	}
-	roleSrv := &service.RoleSrv{
+	GreetSrv := &service.GreetSrv{
 		Enforcer:               syncedEnforcer,
 		TransRepo:              trans,
-		RoleRepo:               roleRepo,
-		RoleMenuRepo:           roleMenuRepo,
+		GreetRepo:              GreetRepo,
+		GreetMenuRepo:          GreetMenuRepo,
 		UserRepo:               userRepo,
 		MenuActionResourceRepo: menuActionResourceRepo,
 	}
-	roleAPI := &api.RoleAPI{
-		RoleSrv: roleSrv,
+	GreetAPI := &api.GreetAPI{
+		GreetSrv: GreetSrv,
 	}
 	userSrv := &service.UserSrv{
-		Enforcer:     syncedEnforcer,
-		TransRepo:    trans,
-		UserRepo:     userRepo,
-		UserRoleRepo: userRoleRepo,
-		RoleRepo:     roleRepo,
+		Enforcer:      syncedEnforcer,
+		TransRepo:     trans,
+		UserRepo:      userRepo,
+		UserGreetRepo: userGreetRepo,
+		GreetRepo:     GreetRepo,
 	}
 	userAPI := &api.UserAPI{
 		UserSrv: userSrv,
@@ -117,7 +117,7 @@ func BuildInjector() (*Injector, func(), error) {
 		CasbinEnforcer: syncedEnforcer,
 		LoginAPI:       loginAPI,
 		MenuAPI:        menuAPI,
-		RoleAPI:        roleAPI,
+		GreetAPI:       GreetAPI,
 		UserAPI:        userAPI,
 	}
 	engine := InitGinEngine(routerRouter)

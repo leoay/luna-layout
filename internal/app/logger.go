@@ -5,10 +5,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/LyricTian/gin-admin/v8/internal/app/config"
-	"github.com/LyricTian/gin-admin/v8/pkg/logger"
-	loggerhook "github.com/LyricTian/gin-admin/v8/pkg/logger/hook"
-	loggergormhook "github.com/LyricTian/gin-admin/v8/pkg/logger/hook/gorm"
+	"github.com/leoay/luna/pkg/logger"
+	loggerhook "github.com/leoay/luna/pkg/logger/hook"
+	loggergormhook "github.com/leoay/luna/pkg/logger/hook/gorm"
+	"server/internal/app/config"
 
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 )

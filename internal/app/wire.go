@@ -8,11 +8,10 @@ package app
 import (
 	"github.com/google/wire"
 
-	"github.com/LyricTian/gin-admin/v8/internal/app/api"
-	"github.com/LyricTian/gin-admin/v8/internal/app/dao"
-	"github.com/LyricTian/gin-admin/v8/internal/app/module/adapter"
-	"github.com/LyricTian/gin-admin/v8/internal/app/router"
-	"github.com/LyricTian/gin-admin/v8/internal/app/service"
+	"server/internal/app/api"
+	"server/internal/app/dao"
+	"server/internal/app/router"
+	"server/internal/app/service"
 )
 
 func BuildInjector() (*Injector, func(), error) {
@@ -20,12 +19,10 @@ func BuildInjector() (*Injector, func(), error) {
 		InitGormDB,
 		dao.RepoSet,
 		InitAuth,
-		InitCasbin,
 		InitGinEngine,
 		service.ServiceSet,
 		api.APISet,
 		router.RouterSet,
-		adapter.CasbinAdapterSet,
 		InjectorSet,
 	)
 	return new(Injector), nil, nil

@@ -3,12 +3,10 @@ package app
 import (
 	"github.com/LyricTian/gzip"
 	"github.com/gin-gonic/gin"
-	ginSwagger "github.com/swaggo/gin-swagger"
-	swaggerFiles "github.com/swaggo/gin-swagger/swaggerFiles"
 
-	"github.com/LyricTian/gin-admin/v8/internal/app/config"
-	"github.com/LyricTian/gin-admin/v8/internal/app/middleware"
-	"github.com/LyricTian/gin-admin/v8/internal/app/router"
+	"server/internal/app/config"
+	"server/internal/app/middleware"
+	"server/internal/app/router"
 )
 
 func InitGinEngine(r router.IRouter) *gin.Engine {
@@ -47,16 +45,5 @@ func InitGinEngine(r router.IRouter) *gin.Engine {
 
 	// Router register
 	r.Register(app)
-
-	// Swagger
-	if config.C.Swagger {
-		app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	}
-
-	// Website
-	if dir := config.C.WWW; dir != "" {
-		app.Use(middleware.WWWMiddleware(dir, middleware.AllowPathPrefixSkipper(prefixes...)))
-	}
-
 	return app
 }
