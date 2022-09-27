@@ -2,10 +2,10 @@ package server
 
 import (
 	"context"
-	"github.com/leoay/luna/internal/app"
 	"github.com/leoay/luna/pkg/logger"
 	cli "github.com/urfave/cli/v2"
 	"os"
+	"server/internal/app"
 )
 
 var VERSION = "0.0.1"
