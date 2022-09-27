@@ -1,5 +1,46 @@
 package server
 
-func main() {
+import (
+	"context"
+	"github.com/leoay/luna/internal/app"
+	"github.com/leoay/luna/pkg/logger"
+	cli "github.com/urfave/cli/v2"
+	"os"
+)
 
+var VERSION = "0.0.1"
+
+func main() {
+	ctx := logger.NewTagContext(context.Background(), "__main__")
+
+	app := cli.NewApp()
+	app.Name = "gin-admin"
+	app.Version = VERSION
+	app.Commands = []*cli.Command{
+		newWebCmd(ctx),
+	}
+	err := app.Run(os.Args)
+	if err != nil {
+		logger.WithContext(ctx).Errorf(err.Error())
+	}
+}
+
+func newWebCmd(ctx context.Context) *cli.Command {
+	return &cli.Command{
+		Name:  "web",
+		Usage: "Run http server",
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:     "conf",
+				Aliases:  []string{"c"},
+				Usage:    "App configuration file(.json,.yaml,.toml)",
+				Required: true,
+			},
+		},
+		Action: func(c *cli.Context) error {
+			return app.Run(ctx,
+				app.SetConfigFile(c.String("conf")),
+				app.SetVersion(VERSION))
+		},
+	}
 }
