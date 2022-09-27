@@ -4,7 +4,7 @@ NOW = $(shell date -u '+%Y%m%d%I%M%S')
 
 RELEASE_VERSION = v8.0.0
 
-APP 			= gin-admin
+APP 			= server
 SERVER_BIN  	= ./cmd/${APP}/${APP}
 RELEASE_ROOT 	= release
 RELEASE_SERVER 	= release/${APP}
