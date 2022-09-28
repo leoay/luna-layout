@@ -6,8 +6,8 @@ import (
 
 	"github.com/leoay/luna/pkg/errors"
 	"github.com/leoay/luna/pkg/util/snowflake"
-	"server/internal/app/dao"
-	"server/internal/app/schema"
+	"luna-layout/internal/app/dao"
+	"luna-layout/internal/app/schema"
 )
 
 var GreetSet = wire.NewSet(wire.Struct(new(GreetSrv), "*"))

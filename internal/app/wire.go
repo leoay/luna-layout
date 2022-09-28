@@ -8,10 +8,10 @@ package app
 import (
 	"github.com/google/wire"
 
-	"server/internal/app/api"
-	"server/internal/app/dao"
-	"server/internal/app/router"
-	"server/internal/app/service"
+	"luna-layout/internal/app/api"
+	"luna-layout/internal/app/dao"
+	"luna-layout/internal/app/router"
+	"luna-layout/internal/app/service"
 )
 
 func BuildInjector() (*Injector, func(), error) {

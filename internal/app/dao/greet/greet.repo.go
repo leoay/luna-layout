@@ -8,7 +8,7 @@ import (
 
 	"github.com/leoay/luna/internal/app/dao/util"
 	"github.com/leoay/luna/pkg/errors"
-	"server/internal/app/schema"
+	"luna-layout/internal/app/schema"
 )
 
 var GreetSet = wire.NewSet(wire.Struct(new(GreetRepo), "*"))

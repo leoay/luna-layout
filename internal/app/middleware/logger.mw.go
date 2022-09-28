@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/LyricTian/gin-admin/v8/internal/app/config"
-	"github.com/LyricTian/gin-admin/v8/internal/app/ginx"
-	"github.com/LyricTian/gin-admin/v8/pkg/logger"
 	"github.com/gin-gonic/gin"
+	"github.com/leoay/luna/pkg/logger"
+	"luna-layout/internal/app/config"
+	"luna-layout/internal/app/ginx"
 )
 
 // Request logger

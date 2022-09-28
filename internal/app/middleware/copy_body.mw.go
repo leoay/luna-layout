@@ -7,9 +7,9 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/LyricTian/gin-admin/v8/internal/app/config"
-	"github.com/LyricTian/gin-admin/v8/internal/app/ginx"
 	"github.com/gin-gonic/gin"
+	"luna-layout/internal/app/config"
+	"luna-layout/internal/app/ginx"
 )
 
 // Copy body to context bytes array

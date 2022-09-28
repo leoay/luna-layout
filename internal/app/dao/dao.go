@@ -7,8 +7,8 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/leoay/luna/internal/app/dao/util"
-	"server/internal/app/config"
-	"server/internal/app/dao/Greet"
+	"luna-layout/internal/app/config"
+	"luna-layout/internal/app/dao/Greet"
 ) // end
 
 // RepoSet repo injection

@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/LyricTian/gin-admin/v8/internal/app/ginx"
-	"github.com/LyricTian/gin-admin/v8/pkg/errors"
 	"github.com/gin-gonic/gin"
+	"github.com/leoay/luna/internal/app/ginx"
+	"github.com/leoay/luna/pkg/errors"
 )
 
 func NoMethodHandler() gin.HandlerFunc {

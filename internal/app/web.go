@@ -4,9 +4,9 @@ import (
 	"github.com/LyricTian/gzip"
 	"github.com/gin-gonic/gin"
 
-	"server/internal/app/config"
-	"server/internal/app/middleware"
-	"server/internal/app/router"
+	"luna-layout/internal/app/config"
+	"luna-layout/internal/app/middleware"
+	"luna-layout/internal/app/router"
 )
 
 func InitGinEngine(r router.IRouter) *gin.Engine {

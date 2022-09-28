@@ -6,12 +6,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/LyricTian/gin-admin/v8/internal/app/config"
-	"github.com/LyricTian/gin-admin/v8/internal/app/contextx"
-	"github.com/LyricTian/gin-admin/v8/internal/app/ginx"
-	"github.com/LyricTian/gin-admin/v8/pkg/auth"
-	"github.com/LyricTian/gin-admin/v8/pkg/errors"
-	"github.com/LyricTian/gin-admin/v8/pkg/logger"
+	"github.com/leoay/luna/pkg/auth"
+	"github.com/leoay/luna/pkg/errors"
+	"github.com/leoay/luna/pkg/logger"
+	"luna-layout/internal/app/config"
+	"luna-layout/internal/app/contextx"
+	"luna-layout/internal/app/ginx"
 )
 
 func wrapGreetAuthContext(c *gin.Context, GreetID uint64, GreetName string) {

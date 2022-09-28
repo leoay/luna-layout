@@ -1,10 +1,10 @@
 package middleware
 
 import (
-	"github.com/LyricTian/gin-admin/v8/internal/app/contextx"
-	"github.com/LyricTian/gin-admin/v8/pkg/logger"
-	"github.com/LyricTian/gin-admin/v8/pkg/util/trace"
 	"github.com/gin-gonic/gin"
+	"github.com/leoay/luna/pkg/logger"
+	"github.com/leoay/luna/pkg/util/trace"
+	"luna-layout/internal/app/contextx"
 )
 
 // Get or set trace_id in request context

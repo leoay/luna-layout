@@ -4,9 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
 
-	"server/internal/app/ginx"
-	"server/internal/app/schema"
-	"server/internal/app/service"
+	"luna-layout/internal/app/ginx"
+	"luna-layout/internal/app/schema"
+	"luna-layout/internal/app/service"
 )
 
 var GreetSet = wire.NewSet(wire.Struct(new(GreetAPI), "*"))

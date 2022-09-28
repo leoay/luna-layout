@@ -6,10 +6,10 @@ import (
 	"io/ioutil"
 	"runtime"
 
-	"github.com/LyricTian/gin-admin/v8/internal/app/ginx"
-	"github.com/LyricTian/gin-admin/v8/pkg/errors"
-	"github.com/LyricTian/gin-admin/v8/pkg/logger"
 	"github.com/gin-gonic/gin"
+	"github.com/leoay/luna/pkg/errors"
+	"github.com/leoay/luna/pkg/logger"
+	"luna-layout/internal/app/ginx"
 )
 
 var (

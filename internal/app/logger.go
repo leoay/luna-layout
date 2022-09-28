@@ -8,7 +8,7 @@ import (
 	"github.com/leoay/luna/pkg/logger"
 	loggerhook "github.com/leoay/luna/pkg/logger/hook"
 	loggergormhook "github.com/leoay/luna/pkg/logger/hook/gorm"
-	"server/internal/app/config"
+	"luna-layout/internal/app/config"
 
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 )

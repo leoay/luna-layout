@@ -7,7 +7,7 @@ import (
 	"github.com/leoay/luna/pkg/auth/jwtauth"
 	"github.com/leoay/luna/pkg/auth/jwtauth/store/buntdb"
 	"github.com/leoay/luna/pkg/auth/jwtauth/store/redis"
-	"server/internal/app/config"
+	"luna-layout/internal/app/config"
 )
 
 func InitAuth() (auth.Auther, func(), error) {

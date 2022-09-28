@@ -1,11 +1,11 @@
-package server
+package luna_layout
 
 import (
 	"context"
 	"github.com/leoay/luna/pkg/logger"
 	cli "github.com/urfave/cli/v2"
+	"luna-layout/internal/app"
 	"os"
-	"server/internal/app"
 )
 
 var VERSION = "0.0.1"

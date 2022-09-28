@@ -12,7 +12,7 @@ import (
 
 	"github.com/google/gops/agent"
 	"github.com/leoay/luna/pkg/logger"
-	"server/internal/app/config"
+	"luna-layout/internal/app/config"
 )
 
 type options struct {

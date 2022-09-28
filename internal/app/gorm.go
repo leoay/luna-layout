@@ -5,8 +5,8 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/leoay/luna/pkg/gormx"
-	"server/internal/app/config"
-	"server/internal/app/dao"
+	"luna-layout/internal/app/config"
+	"luna-layout/internal/app/dao"
 )
 
 func InitGormDB() (*gorm.DB, func(), error) {

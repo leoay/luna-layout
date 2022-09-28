@@ -5,8 +5,8 @@ import (
 	"github.com/google/wire"
 
 	"github.com/leoay/luna/pkg/auth"
-	"server/internal/app/api"
-	"server/internal/app/middleware"
+	"luna-layout/internal/app/api"
+	"luna-layout/internal/app/middleware"
 )
 
 var _ IRouter = (*Router)(nil)
