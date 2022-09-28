@@ -51,8 +51,6 @@ func Init(ctx context.Context, opts ...Option) (func(), error) {
 
 	monitorCleanFunc := InitMonitor(ctx)
 
-	InitCaptcha()
-
 	injector, injectorCleanFunc, err := BuildInjector()
 	if err != nil {
 		return nil, err
