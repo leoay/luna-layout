@@ -38,25 +38,21 @@ func (a *Router) Prefixes() []string {
 func (a *Router) RegisterAPI(app *gin.Engine) {
 	g := app.Group("/api")
 
-	g.Use(middleware.GreetAuthMiddleware(a.Auth,
+	g.Use(middleware.UserAuthMiddleware(a.Auth,
 		middleware.AllowPathPrefixSkipper("/api/v1/pub/login"),
-	))
-
-	g.Use(middleware.CasbinMiddleware(a.CasbinEnforcer,
-		middleware.AllowPathPrefixSkipper("/api/v1/pub"),
 	))
 
 	g.Use(middleware.RateLimiterMiddleware())
 
 	v1 := g.Group("/v1")
 	{
-		pub := v1.Group("/pub")
-		{
-			gLogin := pub.Group("login")
-			{
-				gLogin.POST("exit", a.LoginAPI.Logout)
-			}
-		}
+		//pub := v1.Group("/pub")
+		//{
+		//	gLogin := pub.Group("login")
+		//	{
+		//		//gLogin.POST("exit", a.LoginAPI.Logout)
+		//	}
+		//}
 
 		gGreet := v1.Group("greet")
 		{
