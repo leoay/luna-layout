@@ -5,9 +5,9 @@ import (
 
 	"gorm.io/gorm"
 
+	"github.com/leoay/luna/pkg/util/structure"
 	"luna-layout/internal/app/dao/util"
 	"luna-layout/internal/app/schema"
-	"luna-layout/pkg/util/structure"
 )
 
 func GetGreetDB(ctx context.Context, defDB *gorm.DB) *gorm.DB {
