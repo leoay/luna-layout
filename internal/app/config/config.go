@@ -8,7 +8,7 @@ import (
 
 	"github.com/koding/multiconfig"
 
-	"github.com/leoay/luna/pkg/util/json"
+	"github.com/LyricTian/gin-admin/v8/pkg/util/json"
 )
 
 var (
@@ -131,10 +131,10 @@ type LogMongoHook struct {
 }
 
 type Root struct {
-	GreetID   uint64
-	GreetName string
-	Password  string
-	RealName  string
+	UserID   uint64
+	UserName string
+	Password string
+	RealName string
 }
 
 type JWTAuth struct {
@@ -213,7 +213,7 @@ type Gorm struct {
 type MySQL struct {
 	Host       string
 	Port       int
-	Greet      string
+	User       string
 	Password   string
 	DBName     string
 	Parameters string
@@ -221,21 +221,21 @@ type MySQL struct {
 
 func (a MySQL) DSN() string {
 	return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?%s",
-		a.Greet, a.Password, a.Host, a.Port, a.DBName, a.Parameters)
+		a.User, a.Password, a.Host, a.Port, a.DBName, a.Parameters)
 }
 
 type Postgres struct {
 	Host     string
 	Port     int
-	Greet    string
+	User     string
 	Password string
 	DBName   string
 	SSLMode  string
 }
 
 func (a Postgres) DSN() string {
-	return fmt.Sprintf("host=%s port=%d Greet=%s dbname=%s password=%s sslmode=%s",
-		a.Host, a.Port, a.Greet, a.DBName, a.Password, a.SSLMode)
+	return fmt.Sprintf("host=%s port=%d user=%s dbname=%s password=%s sslmode=%s",
+		a.Host, a.Port, a.User, a.DBName, a.Password, a.SSLMode)
 }
 
 type Sqlite3 struct {
