@@ -29,18 +29,7 @@ func (a *GreetRepo) Query(ctx context.Context, params schema.GreetQueryParam, op
 	opt := a.getQueryOption(opts...)
 
 	db := GetGreetDB(ctx, a.DB)
-	if v := params.GreetName; v != "" {
-		db = db.Where("Greet_name=?", v)
-	}
-	if v := params.Status; v > 0 {
-		db = db.Where("status=?", v)
-	}
-	if v := params.GreetIDs; len(v) > 0 {
-		subQuery := GetGreetGreetDB(ctx, a.DB).
-			Select("Greet_id").
-			Where("Greet_id IN (?)", v)
-		db = db.Where("id IN (?)", subQuery)
-	}
+
 	if v := params.QueryValue; v != "" {
 		v = "%" + v + "%"
 		db = db.Where("Greet_name LIKE ? OR real_name LIKE ?", v, v)
