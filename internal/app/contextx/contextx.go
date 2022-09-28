@@ -8,8 +8,8 @@ type (
 	transCtx     struct{}
 	noTransCtx   struct{}
 	transLockCtx struct{}
-	GreetIDCtx   struct{}
-	GreetNameCtx struct{}
+	userIDCtx    struct{}
+	userNameCtx  struct{}
 	traceIDCtx   struct{}
 )
 
@@ -41,12 +41,12 @@ func FromTransLock(ctx context.Context) bool {
 	return v != nil && v.(bool)
 }
 
-func NewGreetID(ctx context.Context, GreetID uint64) context.Context {
-	return context.WithValue(ctx, GreetIDCtx{}, GreetID)
+func NewUserID(ctx context.Context, userID uint64) context.Context {
+	return context.WithValue(ctx, userIDCtx{}, userID)
 }
 
-func FromGreetID(ctx context.Context) uint64 {
-	v := ctx.Value(GreetIDCtx{})
+func FromUserID(ctx context.Context) uint64 {
+	v := ctx.Value(userIDCtx{})
 	if v != nil {
 		if s, ok := v.(uint64); ok {
 			return s
@@ -55,12 +55,12 @@ func FromGreetID(ctx context.Context) uint64 {
 	return 0
 }
 
-func NewGreetName(ctx context.Context, GreetName string) context.Context {
-	return context.WithValue(ctx, GreetNameCtx{}, GreetName)
+func NewUserName(ctx context.Context, userName string) context.Context {
+	return context.WithValue(ctx, userNameCtx{}, userName)
 }
 
-func FromGreetName(ctx context.Context) string {
-	v := ctx.Value(GreetNameCtx{})
+func FromUserName(ctx context.Context) string {
+	v := ctx.Value(userNameCtx{})
 	if v != nil {
 		if s, ok := v.(string); ok {
 			return s
