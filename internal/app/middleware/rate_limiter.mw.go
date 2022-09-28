@@ -5,14 +5,14 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/LyricTian/gin-admin/v8/internal/app/config"
-	"github.com/LyricTian/gin-admin/v8/internal/app/contextx"
-	"github.com/LyricTian/gin-admin/v8/internal/app/ginx"
-	"github.com/LyricTian/gin-admin/v8/pkg/errors"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
 	"github.com/go-redis/redis_rate"
+	"github.com/leoay/luna/pkg/errors"
 	"golang.org/x/time/rate"
+	"server/internal/app/config"
+	"server/internal/app/contextx"
+	"server/internal/app/ginx"
 )
 
 // Request rate limter (per minute)
@@ -40,10 +40,10 @@ func RateLimiterMiddleware(skippers ...SkipperFunc) gin.HandlerFunc {
 			return
 		}
 
-		GreetID := contextx.FromGreetID(c.Request.Context())
-		if GreetID != 0 {
+		userID := contextx.FromUserID(c.Request.Context())
+		if userID != 0 {
 			limit := cfg.Count
-			rate, delay, allowed := limiter.AllowMinute(fmt.Sprintf("%d", GreetID), limit)
+			rate, delay, allowed := limiter.AllowMinute(fmt.Sprintf("%d", userID), limit)
 			if !allowed {
 				h := c.Writer.Header()
 				h.Set("X-RateLimit-Limit", strconv.FormatInt(limit, 10))
