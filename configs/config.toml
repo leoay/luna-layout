@@ -144,7 +144,7 @@ Host = "172.22.0.140"
 # 连接端口
 Port = 3306
 # 用户名
-User = "root"
+Greet = "root"
 # 密码
 Password = "123456"
 # 数据库

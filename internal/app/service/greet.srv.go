@@ -99,13 +99,13 @@ func (a *GreetSrv) Delete(ctx context.Context, id uint64) error {
 	} else if oldItem == nil {
 		return errors.ErrNotFound
 	}
-	userResult, err := a.UserRepo.Query(ctx, schema.UserQueryParam{
+	GreetResult, err := a.GreetRepo.Query(ctx, schema.GreetQueryParam{
 		PaginationParam: schema.PaginationParam{OnlyCount: true},
 		GreetIDs:        []uint64{id},
 	})
 	if err != nil {
 		return err
-	} else if userResult.PageResult.Total > 0 {
+	} else if GreetResult.PageResult.Total > 0 {
 		return errors.New400Response("不允许删除已经存在用户的角色")
 	}
 	return nil

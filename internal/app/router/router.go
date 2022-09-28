@@ -38,7 +38,7 @@ func (a *Router) Prefixes() []string {
 func (a *Router) RegisterAPI(app *gin.Engine) {
 	g := app.Group("/api")
 
-	g.Use(middleware.UserAuthMiddleware(a.Auth,
+	g.Use(middleware.GreetAuthMiddleware(a.Auth,
 		middleware.AllowPathPrefixSkipper("/api/v1/pub/login"),
 	))
 

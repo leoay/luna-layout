@@ -6,33 +6,21 @@ import (
 	"github.com/google/wire"
 	"gorm.io/gorm"
 
+	"github.com/leoay/luna/internal/app/dao/util"
 	"server/internal/app/config"
 	"server/internal/app/dao/Greet"
-	"server/internal/app/dao/util"
 ) // end
 
 // RepoSet repo injection
 var RepoSet = wire.NewSet(
 	util.TransSet,
-	menu.MenuActionResourceSet,
-	menu.MenuActionSet,
-	menu.MenuSet,
-	Greet.GreetMenuSet,
 	Greet.GreetSet,
-	user.UserGreetSet,
-	user.UserSet,
 ) // end
 
 // Define repo type alias
 type (
-	TransRepo              = util.Trans
-	MenuActionResourceRepo = menu.MenuActionResourceRepo
-	MenuActionRepo         = menu.MenuActionRepo
-	MenuRepo               = menu.MenuRepo
-	GreetMenuRepo          = Greet.GreetMenuRepo
-	GreetRepo              = Greet.GreetRepo
-	UserGreetRepo          = user.UserGreetRepo
-	UserRepo               = user.UserRepo
+	TransRepo = util.Trans
+	GreetRepo = Greet.GreetRepo
 ) // end
 
 // Auto migration for given models
@@ -42,12 +30,6 @@ func AutoMigrate(db *gorm.DB) error {
 	}
 
 	return db.AutoMigrate(
-		new(menu.MenuActionResource),
-		new(menu.MenuAction),
-		new(menu.Menu),
-		new(Greet.GreetMenu),
 		new(Greet.Greet),
-		new(user.UserGreet),
-		new(user.User),
 	) // end
 }
