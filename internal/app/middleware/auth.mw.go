@@ -6,27 +6,27 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/leoay/luna/pkg/auth"
-	"github.com/leoay/luna/pkg/errors"
-	"github.com/leoay/luna/pkg/logger"
-	"luna-layout/internal/app/config"
-	"luna-layout/internal/app/contextx"
-	"luna-layout/internal/app/ginx"
+	"github.com/LyricTian/gin-admin/v8/internal/app/config"
+	"github.com/LyricTian/gin-admin/v8/internal/app/contextx"
+	"github.com/LyricTian/gin-admin/v8/internal/app/ginx"
+	"github.com/LyricTian/gin-admin/v8/pkg/auth"
+	"github.com/LyricTian/gin-admin/v8/pkg/errors"
+	"github.com/LyricTian/gin-admin/v8/pkg/logger"
 )
 
-func wrapGreetAuthContext(c *gin.Context, GreetID uint64, GreetName string) {
-	ctx := contextx.NewGreetID(c.Request.Context(), GreetID)
-	ctx = contextx.NewGreetName(ctx, GreetName)
-	ctx = logger.NewGreetIDContext(ctx, GreetID)
-	ctx = logger.NewGreetNameContext(ctx, GreetName)
+func wrapUserAuthContext(c *gin.Context, userID uint64, userName string) {
+	ctx := contextx.NewUserID(c.Request.Context(), userID)
+	ctx = contextx.NewUserName(ctx, userName)
+	ctx = logger.NewUserIDContext(ctx, userID)
+	ctx = logger.NewUserNameContext(ctx, userName)
 	c.Request = c.Request.WithContext(ctx)
 }
 
-// Valid Greet token (jwt)
-func GreetAuthMiddleware(a auth.Auther, skippers ...SkipperFunc) gin.HandlerFunc {
+// Valid user token (jwt)
+func UserAuthMiddleware(a auth.Auther, skippers ...SkipperFunc) gin.HandlerFunc {
 	if !config.C.JWTAuth.Enable {
 		return func(c *gin.Context) {
-			wrapGreetAuthContext(c, config.C.Root.GreetID, config.C.Root.GreetName)
+			wrapUserAuthContext(c, config.C.Root.UserID, config.C.Root.UserName)
 			c.Next()
 		}
 	}
@@ -37,11 +37,11 @@ func GreetAuthMiddleware(a auth.Auther, skippers ...SkipperFunc) gin.HandlerFunc
 			return
 		}
 
-		tokenGreetID, err := a.ParseGreetID(c.Request.Context(), ginx.GetToken(c))
+		tokenUserID, err := a.ParseUserID(c.Request.Context(), ginx.GetToken(c))
 		if err != nil {
 			if err == auth.ErrInvalidToken {
 				if config.C.IsDebugMode() {
-					wrapGreetAuthContext(c, config.C.Root.GreetID, config.C.Root.GreetName)
+					wrapUserAuthContext(c, config.C.Root.UserID, config.C.Root.UserName)
 					c.Next()
 					return
 				}
@@ -52,14 +52,14 @@ func GreetAuthMiddleware(a auth.Auther, skippers ...SkipperFunc) gin.HandlerFunc
 			return
 		}
 
-		idx := strings.Index(tokenGreetID, "-")
+		idx := strings.Index(tokenUserID, "-")
 		if idx == -1 {
 			ginx.ResError(c, errors.ErrInvalidToken)
 			return
 		}
 
-		GreetID, _ := strconv.ParseUint(tokenGreetID[:idx], 10, 64)
-		wrapGreetAuthContext(c, GreetID, tokenGreetID[idx+1:])
+		userID, _ := strconv.ParseUint(tokenUserID[:idx], 10, 64)
+		wrapUserAuthContext(c, userID, tokenUserID[idx+1:])
 		c.Next()
 	}
 }
