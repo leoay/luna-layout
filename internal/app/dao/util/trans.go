@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/google/wire"
+	"github.com/leoay/luna/internal/app/contextx"
 	"gorm.io/gorm"
-	"server/internal/app/contextx"
 )
 
 var TransSet = wire.NewSet(wire.Struct(new(Trans), "*"))
