@@ -3,11 +3,11 @@ package app
 import (
 	jwt "github.com/dgrijalva/jwt-go"
 
-	"github.com/leoay/luna/pkg/auth"
-	"github.com/leoay/luna/pkg/auth/jwtauth"
-	"github.com/leoay/luna/pkg/auth/jwtauth/store/buntdb"
-	"github.com/leoay/luna/pkg/auth/jwtauth/store/redis"
 	"luna-layout/internal/app/config"
+	"luna-layout/pkg/auth"
+	"luna-layout/pkg/auth/jwtauth"
+	"luna-layout/pkg/auth/jwtauth/store/buntdb"
+	"luna-layout/pkg/auth/jwtauth/store/redis"
 )
 
 func InitAuth() (auth.Auther, func(), error) {

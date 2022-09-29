@@ -8,11 +8,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
 	"github.com/go-redis/redis_rate"
-	"github.com/leoay/luna/pkg/errors"
 	"golang.org/x/time/rate"
 	"luna-layout/internal/app/config"
 	"luna-layout/internal/app/contextx"
 	"luna-layout/internal/app/ginx"
+	"luna-layout/pkg/errors"
 )
 
 // Request rate limter (per minute)

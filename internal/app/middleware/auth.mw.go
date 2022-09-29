@@ -6,12 +6,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/leoay/luna/pkg/auth"
-	"github.com/leoay/luna/pkg/errors"
-	"github.com/leoay/luna/pkg/logger"
 	"luna-layout/internal/app/config"
 	"luna-layout/internal/app/contextx"
 	"luna-layout/internal/app/ginx"
+	"luna-layout/pkg/auth"
+	"luna-layout/pkg/errors"
+	"luna-layout/pkg/logger"
 )
 
 func wrapUserAuthContext(c *gin.Context, userID uint64, userName string) {

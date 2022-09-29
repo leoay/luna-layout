@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
 
-	"github.com/leoay/luna/pkg/auth"
+	"luna-layout/pkg/auth"
 )
 
 var InjectorSet = wire.NewSet(wire.Struct(new(Injector), "*"))

@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/leoay/luna/pkg/errors"
 	"luna-layout/internal/app/ginx"
+	"luna-layout/pkg/errors"
 )
 
 func NoMethodHandler() gin.HandlerFunc {

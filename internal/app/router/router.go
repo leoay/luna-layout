@@ -4,9 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/wire"
 
-	"github.com/leoay/luna/pkg/auth"
 	"luna-layout/internal/app/api"
 	"luna-layout/internal/app/middleware"
+	"luna-layout/pkg/auth"
 )
 
 var _ IRouter = (*Router)(nil)

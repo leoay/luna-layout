@@ -5,10 +5,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/leoay/luna/pkg/logger"
-	loggerhook "github.com/leoay/luna/pkg/logger/hook"
-	loggergormhook "github.com/leoay/luna/pkg/logger/hook/gorm"
 	"luna-layout/internal/app/config"
+	"luna-layout/pkg/logger"
+	loggerhook "luna-layout/pkg/logger/hook"
+	loggergormhook "luna-layout/pkg/logger/hook/gorm"
 
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 )

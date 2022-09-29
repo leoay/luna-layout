@@ -2,9 +2,9 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/leoay/luna/pkg/logger"
-	"github.com/leoay/luna/pkg/util/trace"
 	"luna-layout/internal/app/contextx"
+	"luna-layout/pkg/logger"
+	"luna-layout/pkg/util/trace"
 )
 
 // Get or set trace_id in request context
