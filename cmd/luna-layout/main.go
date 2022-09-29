@@ -14,7 +14,7 @@ func main() {
 	ctx := logger.NewTagContext(context.Background(), "__main__")
 
 	app := cli.NewApp()
-	app.Name = "gin-admin"
+	app.Name = "luna-layout"
 	app.Version = VERSION
 	app.Commands = []*cli.Command{
 		newWebCmd(ctx),
