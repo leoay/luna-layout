@@ -40,6 +40,7 @@ func Init(ctx context.Context, opts ...Option) (func(), error) {
 		opt(&o)
 	}
 
+	config.MustLoad(o.ConfigFile)
 	config.PrintWithJSON()
 
 	logger.WithContext(ctx).Printf("Start server,#run_mode %s,#version %s,#pid %d", config.C.RunMode, o.Version, os.Getpid())
